@@ -10,7 +10,6 @@ RUN apk add --no-cache ca-certificates libcap && adduser -D -H -u 10001 relay
 COPY --from=build /out/tgwebproxy /usr/local/bin/tgwebproxy
 # The relay listens on 80 and 443, so an unprivileged user needs the bind
 # capability on the binary itself; Docker will not grant it to the process.
-RUN setcap 'cap_net_bind_service=+ep' /usr/local/bin/tgwebproxy
 # The certificate cache must outlive the container, or every restart asks
 # Let's Encrypt for a fresh certificate and walks into its rate limit.
 VOLUME /certs
