@@ -12,7 +12,6 @@ COPY --from=build /out/tgwebproxy /usr/local/bin/tgwebproxy
 # capability on the binary itself; Docker will not grant it to the process.
 # The certificate cache must outlive the container, or every restart asks
 # Let's Encrypt for a fresh certificate and walks into its rate limit.
-VOLUME /certs
 USER relay
 EXPOSE 80 443
 ENV TGWP_CERT_DIR=/certs
